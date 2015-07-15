@@ -1,13 +1,60 @@
-You've Done It!
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  body { padding-top: 70px; }
+</style>
+<body>
+<div class="container">
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-xs-12 col-sm-9">
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      
+      <div class="jumbotron">
+        <h1>Article Share</h1>
+        <p>Share your perspective or others through "tweet" like linked posts. Start your profile today.</p>
+         <a class="btn btn-lg btn-primary" href="" role="button">Creat Profile &raquo;</a>
+      </div>
+      
+
+      <div class="row">
+      {% for tweet in tweets %}
+        <div class="col-xs-6 col-lg-4">
+          <h2>{{ tweet.tag }}</h2>
+          <p>{{ tweet.tweet }}</p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+        </div><!--/.col-xs-6.col-lg-4-->
+      {% endfor %}
+      </div><!--/row-->
+    </div><!--/.col-xs-12.col-sm-9-->
 
 
-<ul>
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+      <div class="list-group">
+      	<h1>Tags</h1>
+      {% for tag in tags %}
+        <a href="" class="list-group-item active">{{ tag.tag }}</a>
+        
+      {% endfor %}
+      </div>
+    </div>
+  </div>
 
-{% for tweet in tweets %}
+  <hr>
 
-	<li>{{tweet.tweet}}</li>
+  <footer>
+    <p>&copy; Article Share 2015</p>
+  </footer>
+
+</div>
 
 
-{% endfor %}
+</body>
 
-</ul>
+{% endblock %}
+
+
+
