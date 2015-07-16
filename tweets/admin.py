@@ -2,16 +2,12 @@ from django.contrib import admin
 from .models import Tweet, Tag
 
 class TweetAdmin(admin.ModelAdmin):
-	display_list = ["__str__", "tag", "posted"]
+	list_display = ['id', '__str__', 'posted']
 
 
 class TagAdmin(admin.ModelAdmin):
-
-    # for tag in Tags:
-    #     count = Tweets.objects.filter(tag=tag).count()
-    #     tweetcount[Tags.tag] = count
-    #     print(tweetcount)
-    display_list = ["__str__"]
+	list_display = ['id', '__str__']
+   
 
 
 # Register your models here.

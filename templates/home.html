@@ -23,8 +23,10 @@
       <div class="row">
       {% for tweet in tweets %}
         <div class="col-xs-6 col-lg-4">
-          <h2>{{ tweet.tag }}</h2>
-          <p>{{ tweet.tweet }}</p>
+          {% for tag in tweet.tag.all %}
+              {{ tag|upper }}
+          {% endfor %}
+          <p><i>From {{ user }} | </i>{{ tweet }}</p>
           <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
         </div><!--/.col-xs-6.col-lg-4-->
       {% endfor %}
@@ -36,7 +38,7 @@
       <div class="list-group">
       	<h1>Tags</h1>
       {% for tag in tags %}
-        <a href="" class="list-group-item active">{{ tag.tag }}</a>
+        <a href="" class="list-group-item active">{{ tag }}</a>
         
       {% endfor %}
       </div>

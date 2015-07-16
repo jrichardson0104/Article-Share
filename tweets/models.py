@@ -1,11 +1,12 @@
 from django.db import models
-# from users.models import Users
+from django.contrib.auth.models import User
 # Create your models here.
+
 class Tweet(models.Model):
 	tweet = models.CharField(max_length=140, blank=False)
-	# user = models.ForeignKey('Users.user')
+	user = models.ForeignKey(User, default=0)
 	posted = models.DateField(auto_now_add=True, auto_now=False)
-	tag = models.ForeignKey('tweets.Tag')
+	tag = models.ManyToManyField('tweets.Tag')
 	
 	def __str__(self):
 		return str(self.tweet)
@@ -18,3 +19,6 @@ class Tag(models.Model):
 
 
 
+# class UserProfile(models.Model):
+# 		user = models.OneToOneField(User, primary_key=True)
+# 		about = models.TextField(max_length=200)

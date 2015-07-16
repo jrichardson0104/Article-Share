@@ -7,6 +7,11 @@ def home(request):
 
 	tweets = Tweet.objects.all()
 	tags = Tag.objects.all()
+
+	# t = Tweet.objects.get(id=1)
+	# print(t.tag.all())
+
+
 	context = {
 
 		"tweets": tweets,
@@ -14,3 +19,4 @@ def home(request):
 	}
 
 	return render(request, "home.html", context)
+
