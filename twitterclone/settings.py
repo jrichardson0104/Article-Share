@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.mail.me.com'
+EMAIL_HOST_USER = 'jt21091@icloud.com'
+EMAIL_HOST_PASSWORD ='Travis91!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 
@@ -41,6 +46,7 @@ INSTALLED_APPS = (
     'tweets',
     'crispy_forms',
     'autoslug',
+    'registration',
 
 )
 
@@ -112,4 +118,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 ACCOUNT_ACTIVATION_DAYS = 7 
 REGISTRATION_AUTO_LOGIN = True 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile'
+LOGOUT_REDIRECT_URL = '/'
+REGISTRATION_COMPLETE_REDIRECT_URL = '/profile'

@@ -11,20 +11,14 @@
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
       
-      <div class="jumbotron">
-        <h1>Article Share</h1>
-        <p>Share your perspective or others through "tweet" like linked posts. Start your profile today.</p>
-         <a class="btn btn-lg btn-primary" href="{% url 'registration_register' %}" role="button">Create Your Profile &raquo;</a>
-      </div>
-      
-
+      <h3>{{ tag }}</h3>
       <div class="row">
       {% for tweet in tweets %}
         <div class="col-xs-6 col-lg-4">
-          {% for tag in tweet.tag.all %}
-              {{ tag }}
-          {% endfor %}
-          <p>From<i> {{ tweet.user }} | </i>{{ tweet }}</p>
+          <!-- {% for tag in tweet.tag.all %}
+              {{ tag|upper }}
+          {% endfor %} -->
+          <p>From<i> {{ tweets.user }} | </i>{{ tweet }}</p>
           <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
         </div><!--/.col-xs-6.col-lg-4-->
       {% endfor %}
@@ -35,15 +29,14 @@
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
       <div class="list-group">
       	<h1>Tags</h1>
-      {% for tag in tags %}
-        <a href="tags/view/{{ tag }}" class="list-group-item active">{{ tag }}</a>
-        
-      {% endfor %}
+        {% for tag in tags %}
+        <a href="/tags/view/{{ tag }}" class="list-group-item active">{{ tag }}</a>
+        {% endfor %}
       </div>
     </div>
   </div>
 
-  <hr>
+  
 
   <footer>
     <p>&copy; Article Share 2015</p>
@@ -55,6 +48,3 @@
 </body>
 
 {% endblock %}
-
-
-

@@ -4,13 +4,16 @@
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
-<h1>Register Now</h1>
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="{% trans 'Submit' %}" />
-</form>
-
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h1>Register Now!</h1>
+		<form method="post" action="">
+		    {% csrf_token %}
+		    {{ form|crispy }}
+		    <input type="submit" value="{% trans 'Submit' %}" />
+		</form>
+	</div>
+</div>
 {% endblock %}
 
 
