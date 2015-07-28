@@ -24,7 +24,7 @@
           {% for tag in tweet.tag.all %}
               {{ tag }}
           {% endfor %}
-          <p>From<i> {{ tweet.user }} | </i>{{ tweet }}</p>
+          <p>From<i> <a href='/public/{{ tweet.user }}'>{{ tweet.user }} </a> | </i>{{ tweet }}</p>
           <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
         </div><!--/.col-xs-6.col-lg-4-->
       {% endfor %}

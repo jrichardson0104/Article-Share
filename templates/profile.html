@@ -7,11 +7,23 @@
 		<h1>Welcome {{ user }}!</h1>
 	</div>
 	<div class="col-sm-6 col-sm-offset-3">
+		
 		<h3>Share A New Article</h3>
-		<form method='POST' actions=''>{% csrf_token %}
+		<form method='POST' action='/add_tweet'>{% csrf_token %}
+
 			{{ form|crispy }}
-			<input class='btn btn-primary' type='submit' value='tweet'/>
+		<!-- 	<a href='/add_tag'>Add a New Tag</a> -->
+			<input class='btn btn-primary' type='submit' value='Share'/>
 		</form>
+		
+		
+		<form method='POST' action='/add_tag'>{% csrf_token %}
+			<h4>Add a New Tagqq</h4>
+			{{ tagform|crispy }}
+			
+			<input class='btn btn-primary' type='submit' value='Add'/>
+		</form>
+		
 		<h3>Your Tweets</h3>
 		{% for tweet in tweets %}
 		  {% for tag in tweet.tag.all %}
@@ -25,3 +37,5 @@
 
 </div>
 {% endblock %}
+
+

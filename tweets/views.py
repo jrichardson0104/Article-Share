@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.template import Context
 from .models import Tweet, Tag
-from .forms import CreateTweetForm
-# Create your views here.
+from .forms import CreateTweetForm, CreateTagForm
+from django.contrib.auth.models import User
+# Create your views hereself.
 from django.contrib.auth.models import User
 def home(request):
 
@@ -24,30 +25,75 @@ def home(request):
 def profile(request):
 	
 	user = request.user
-	form = CreateTweetForm(request.POST or None)
+	tagform = CreateTagForm()
+	form = CreateTweetForm()
+	
+	
 	context = {
 		"user": user,
 		"form": form,
 		"tweets": Tweet.objects.filter(user=user).all(),
+		"tagform": tagform,
+	
 	}
 
+	return render(request, "profile.html", context)
+
+def add_tag(request):
+	tagform = CreateTagForm(data=request.POST)
+	if tagform.is_valid():
+		
+		tagform.save()
+		
+	else:
+
+		tagform = CreateTagForm()
+	return redirect('/profile')
+
+def add_tweet(request):
+	form = CreateTweetForm(data=request.POST)
 	if form.is_valid():
 		instance = form.save(commit=False)
 		instance.user = request.user
 		instance.save()
 		form.save_m2m()
-		
+	else:
+		form = CreateTweetForm()
+	return redirect('/profile')
+
+
+def public(request, user):
+	user = User.objects.filter(username=user)
+
+	tweets = Tweet.objects.filter(user=user)
+
+	context = {
+
+		"tweets": tweets,
+		"user": user,
+
+	}
+
+	return render(request, "public.html", context)
 
 
 
-	return render(request, "profile.html", context)
-
-
-# def add_tag(request, tag):
+# def add_tag(request):
 # 	form = CreateTagForm(request.POST or None)
+
+# 	context = {
+		
+# 		"form": form,
+	
+		
+# 	}
+
 # 	if form.is_valid():
-# 		form.save()
-# 	return redirect('/profile')
+# 		instance = form.save(commit=False)
+# 		instance.save()
+# 		return redirect('/profile')
+
+# 	return render(request, "add_tag.html", context)
 
 def view_tag(request, tag):
 

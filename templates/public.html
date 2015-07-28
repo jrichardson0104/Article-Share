@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h1>{{ user }}</h1>
+	</div>
+	<div class="col-sm-6 col-sm-offset-3">
+	
+	
+		<h3>Tweets</h3>
+		{% for tweet in tweets %}
+		  {% for tag in tweet.tag.all %}
+		      {{ tag|upper }}
+		  {% endfor %}
+		  <p>{{ tweet }}</p>
+		  <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+		<!--/.col-xs-6.col-lg-4-->
+		{% endfor %}
+	</div>
+
+</div>
+{% endblock %}

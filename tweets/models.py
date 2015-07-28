@@ -19,6 +19,9 @@ class Tag(models.Model):
 	def __str__(self):
 		return str(self.tag)
 
+	# class Meta:
+	# 	ordering = ['tag']
+
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, primary_key=True)
