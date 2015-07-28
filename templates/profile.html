@@ -3,36 +3,31 @@
 {% load crispy_forms_tags %}
 
 <div class="row">
-	<div class="col-sm-6 col-sm-offset-3">
+	<div class="col-sm-12 col-md-12 col-lg-12 col-sm-offset-1">
 		<h1>Welcome {{ user }}!</h1>
 	</div>
-	<div class="col-sm-6 col-sm-offset-3">
+	<div class="col-sm-6 col-md-6 col-lg-4 col-lg-offset-1">
 		
 		<h3>Share A New Article</h3>
-		<form method='POST' action='/add_tweet'>{% csrf_token %}
+		<form method='POST' action='/add_share'>{% csrf_token %}
+
 
 			{{ form|crispy }}
 		<!-- 	<a href='/add_tag'>Add a New Tag</a> -->
 			<input class='btn btn-primary' type='submit' value='Share'/>
 		</form>
-		
-		
-		<form method='POST' action='/add_tag'>{% csrf_token %}
-			<h4>Add a New Tagqq</h4>
-			{{ tagform|crispy }}
-			
-			<input class='btn btn-primary' type='submit' value='Add'/>
-		</form>
-		
-		<h3>Your Tweets</h3>
-		{% for tweet in tweets %}
-		  {% for tag in tweet.tag.all %}
-		      {{ tag|upper }}
+	</div>
+	<div class="col-sm-6 col-md-6 col-lg-5 col-sm-offset-1">
+		<h3>Your Shares</h3>
+		{% for share in shares %}
+		  {% for category in share.category.all %}
+		      {{ category|upper }}
 		  {% endfor %}
-		  <p>{{ tweet }}</p>
+		  <p>{{ share.tag|lower }} | {{ share }}<br>{{ share.url|urlizetrunc:40 }}</p>
 		  <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
 		<!--/.col-xs-6.col-lg-4-->
 		{% endfor %}
+
 	</div>
 
 </div>

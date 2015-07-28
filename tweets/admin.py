@@ -1,19 +1,20 @@
 from django.contrib import admin
-from .models import Tweet, Tag
+from .models import Article, Category
 
-class TweetAdmin(admin.ModelAdmin):
-	list_display = ['id', '__str__','get_tags', 'posted', 'user']
+class ArticleAdmin(admin.ModelAdmin):
+	list_display = ['id', '__str__', 'get_category','posted']
+
 	class Meta:
-		model = Tweet
-	def get_tags(self, obj):
-		return "\n".join([tweet.tag for tweet in obj.tag.all()])
+		model = Article
+	def get_category(self, obj):
+		return "\n".join([share.category for share in obj.category.all()])
 
 
-class TagAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
 	list_display = ['id', '__str__']
 	
 
 
 # Register your models here.
-admin.site.register(Tweet, TweetAdmin)
-admin.site.register(Tag, TagAdmin)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Category, CategoryAdmin)
