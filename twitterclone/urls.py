@@ -2,14 +2,9 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'twitterclone.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+
     url(r'^myprofile/', 'tweets.views.profile', name='myprofile'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-
-    # url(r'^add_category$', 'tweets.views.add_category'),
-    url(r'^add_share$', 'tweets.views.add_share'),
     url(r'^$', 'tweets.views.home', name = 'home'),
     url(r'^contact$', 'tweets.views.contact', name='contact'),
     url(r'^about$', 'tweets.views.about', name='about'),

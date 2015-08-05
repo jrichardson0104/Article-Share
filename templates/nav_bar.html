@@ -8,17 +8,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <p class="navbar-brand">Article Share</p>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
+       
+        <li><a href="/">Home</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if request.user.is_authenticated %}
-        <li ><a href="{% url 'auth_logout' %}">Logout</a></li>
+        <li ><a href="{% url 'auth_logout'%}?next={% url 'home' %}">Logout</a></li>
           {% if not "/profile" in request.get_full_path %}
             <li ><a href="{% url 'myprofile' %}">My Profile</a></li>
           {% endif %}

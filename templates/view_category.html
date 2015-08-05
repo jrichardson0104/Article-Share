@@ -15,8 +15,8 @@
       <div class="row">
       {% for share in shares %}
         <div class="col-xs-6 col-lg-4">
-          <a href="{% url 'view_tag' share.tag %}">{{ share.tag }}</a>s
-          <p>From<i> {{ shares.user }} | </i>{{ share }}</p>
+          {{ share.tag  }}
+          <p>From<i> {{ share.user }} | </i>{{ share }}<br>{{ share.url|urlizetrunc:30 }}</p>
           <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
         </div><!--/.col-xs-6.col-lg-4-->
       {% endfor %}

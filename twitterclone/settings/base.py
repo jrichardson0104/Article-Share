@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -125,6 +125,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 ACCOUNT_ACTIVATION_DAYS = 7 
 REGISTRATION_AUTO_LOGIN = True 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/profile'
-LOGOUT_REDIRECT_URL = '/'
-REGISTRATION_COMPLETE_REDIRECT_URL = '/profile'
+LOGIN_REDIRECT_URL = '/myprofile'
+

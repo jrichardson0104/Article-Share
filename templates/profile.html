@@ -6,10 +6,10 @@
 	<div class="col-sm-12 col-md-12 col-lg-12 col-sm-offset-1">
 		<h1>Welcome {{ user }}!</h1>
 	</div>
-	<div class="col-sm-6 col-md-6 col-lg-4 col-lg-offset-1">
+	<div class="col-sm-6 col-md-5 col-lg-5 col-sm-offset-1">
 		
 		<h3>Share A New Article</h3>
-		<form method='POST' action='/add_share'>{% csrf_token %}
+		<form method='POST' action=''>{% csrf_token %}
 
 
 			{{ form|crispy }}
@@ -17,7 +17,7 @@
 			<input class='btn btn-primary' type='submit' value='Share'/>
 		</form>
 	</div>
-	<div class="col-sm-6 col-md-6 col-lg-5 col-sm-offset-1">
+	<div class="col-sm-6 col-md-5 col-lg-5 col-sm-offset-1">
 		<h3>Your Shares</h3>
 		{% for share in shares %}
 		  {% for category in share.category.all %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template import Context
 from .models import Article, Category
-from .forms import CreateShareForm, CreateCategoryForm, ContactForm
+from .forms import CreateShareForm, ContactForm
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
@@ -23,35 +23,26 @@ def home(request):
 def profile(request):
 	
 	user = request.user
-	categoryform = CreateCategoryForm()
-	form = CreateShareForm()
+
+	form = CreateShareForm(request.POST or None)
 	
 	
 	context = {
 		"user": user,
 		"form": form,
 		"shares": Article.objects.filter(user=user),
-		"categoryform": categoryform,
+		
 	
 	}
 
-	return render(request, "profile.html", context)
-
-def add_share(request):
-
-	form = CreateShareForm(data=request.POST)
-
 	if form.is_valid():
-
 		instance = form.save(commit=False)
 		instance.user = request.user
 		instance.save()
 		form.save_m2m()
-	else:
-		form = CreateShareForm()
-		
-	return redirect('/myprofile')
+		return redirect('/myprofile')
 
+	return render(request, "profile.html", context)
 
 def public(request, user):
 
