@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'tweets',
     'crispy_forms',
-    'autoslug',
     'registration',
 
 )
