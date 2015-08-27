@@ -11,7 +11,7 @@
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
       
-      <h3>{{ category }}</h3>
+      <h3>{{ tag }}</h3>
       <div class="row">
       {% for share in shares %}
         <div class="col-xs-6 col-lg-4">
@@ -31,13 +31,12 @@
         <a href="/category/view/{{ category }}" class="list-group-item active">{{ category }}</a>
         {% endfor %}
       </div>
-        <div class="list-group">
+      <div class="list-group">
         <h3>All Tags</h3>
       {% for tag in tags %}
         <a href="{% url 'view_tag' tag %}" class="list-group-item active">{{ tag }}</a>
         
       {% endfor %}
-    </div>
     </div>
   </div>
 

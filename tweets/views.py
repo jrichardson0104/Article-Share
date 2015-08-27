@@ -7,15 +7,19 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
+
 def home(request):
 
 	shares = Article.objects.all()[:15]
 	categories = Category.objects.all()
+	rtags = Article.objects.values_list('tag', flat=True)[:5]
+	
 
 	context = {
 
 		"shares": shares,
 		"categories": categories,
+		"rtags" : rtags,
 	}
 
 	return render(request, "home.html", context)
@@ -58,17 +62,35 @@ def public(request, user):
 
 	return render(request, "public.html", context)
 
-def view_category(request, category):
+def view_tag(request, tag):
+	
+    categories = Category.objects.all()
+    shares = Article.objects.filter(tag=tag)
+    tags = Article.objects.values_list('tag', flat=True)
+    context = {
+    	'user': request.user,
+        'tag': tag,
+        'categories': categories,
+        'shares': shares,
+        'tags': tags,
+        }
 
+
+    return render(request, "view_tag.html", context)  
+
+def view_category(request, category):
+	
     category = Category.objects.get(category=category)
     categories = Category.objects.all()
     shares = Article.objects.filter(category=category)
+    tags = Article.objects.values_list('tag', flat=True)
 
     context = {
     	'user': request.user,
         'category': category,
         'categories': categories,
         'shares': shares,
+         'tags': tags,
         }
 
 
