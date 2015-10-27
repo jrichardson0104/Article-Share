@@ -3,10 +3,14 @@
 {% load crispy_forms_tags %}
 
 <div class="row">
-	<div class="col-sm-12 col-md-12 col-lg-12 col-sm-offset-1">
+	<div class="col-sm-3 col-md-3 col-lg-3 col-sm-offset-2">
 		<h1>Welcome {{ user }}!</h1>
+		<h3>Update Profile Picture</h3>
+		<h3>Update Password</h3>
+		<h3>Update Email</h3>
+
 	</div>
-	<div class="col-sm-6 col-md-5 col-lg-5 col-sm-offset-1">
+	<div class="col-sm-6 col-md-5 col-lg-5 col-sm-offset-0">
 		
 		<h3>Share A New Article</h3>
 		<form method='POST' action=''>{% csrf_token %}
@@ -16,15 +20,13 @@
 			<input class='btn btn-primary' type='submit' value='Share'/>
 		</form>
 	</div>
-	<div class="col-sm-6 col-md-5 col-lg-5 col-sm-offset-1">
+	<div class="col-sm-6 col-md-5 col-lg-5 col-sm-offset-5">
 		<h3>Your Shares</h3>
 		{% for share in shares %}
 		  {% for category in share.category.all %}
 		      {{ category|upper }}
 		  {% endfor %}
 		  <p>{{ share.tag|lower }} | {{ share }}<br>{{ share.url|urlizetrunc:40 }}</p>
-		  <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
-		<!--/.col-xs-6.col-lg-4-->
 		{% endfor %}
 
 	</div>

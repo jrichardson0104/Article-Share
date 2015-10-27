@@ -6,3 +6,16 @@ body {
   margin-bottom: 0px;
  
 }
+.list-group-item {
+
+/*	background-color: #337ab7;
+*/	
+}
+
+a.list-group-item, button.list-group-item {
+    /*color: #FFF;*/
+}
+
+.row {
+	background-color: 
+}

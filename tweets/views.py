@@ -7,34 +7,29 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
+shares = Article.objects.all()
+categories = Category.objects.all()
+tags = shares.values_list('tag', flat=True)
 
 def home(request):
-
-	shares = Article.objects.all()[:15]
-	categories = Category.objects.all()
-	rtags = Article.objects.values_list('tag', flat=True)[:5]
-	
 
 	context = {
 
 		"shares": shares,
 		"categories": categories,
-		"rtags" : rtags,
+		"rtags" : tags[:5],
 	}
 
 	return render(request, "home.html", context)
 
 def profile(request):
-	
 	user = request.user
-
 	form = CreateShareForm(request.POST or None)
-	
 	
 	context = {
 		"user": user,
 		"form": form,
-		"shares": Article.objects.filter(user=user),
+		"shares": shares.filter(user=user),
 		
 	
 	}
@@ -48,14 +43,11 @@ def profile(request):
 
 	return render(request, "profile.html", context)
 
-def public(request, user):
-
-	userid = User.objects.filter(username=user)
-	shares = Article.objects.filter(user=userid)	
+def public(request, user): 	
 
 	context = {
 
-		"shares": shares,
+		"shares": shares.filter(user_id=User.objects.get(username=user)),
 		"user": user,
 
 	}
@@ -64,37 +56,28 @@ def public(request, user):
 
 def view_tag(request, tag):
 	
-    categories = Category.objects.all()
-    shares = Article.objects.filter(tag=tag)
-    tags = Article.objects.values_list('tag', flat=True)
     context = {
     	'user': request.user,
-        'tag': tag,
-        'categories': categories,
-        'shares': shares,
         'tags': tags,
+        'categories': categories,
+        'shares': shares.filter(tag=tag),
+        'tag': tag,
         }
 
 
     return render(request, "view_tag.html", context)  
 
 def view_category(request, category):
-	
-    category = Category.objects.get(category=category)
-    categories = Category.objects.all()
-    shares = Article.objects.filter(category=category)
-    tags = Article.objects.values_list('tag', flat=True)
 
-    context = {
+	context = {
     	'user': request.user,
         'category': category,
         'categories': categories,
-        'shares': shares,
+        'shares': shares.filter(category=categories.filter(category=category).values('id')),
          'tags': tags,
         }
 
-
-    return render(request, "view_category.html", context)  
+	return render(request, "view_category.html", context)  
 
 
 def contact(request):
@@ -105,9 +88,7 @@ def contact(request):
 
 	}
 
-	if form.is_valid():
-		#print (form.cleaned_data)
-		
+	if form.is_valid():		
 		form_email = form.cleaned_data.get('email')
 		form_message = form.cleaned_data.get('message')
 		form_subject = form.cleaned_data.get('subject')
@@ -135,7 +116,10 @@ def contact(request):
 
 def about(request):
 
-	return render(request, "about.html", {})
+	about = '''Article Share is designed to optimize your ability to catalog articles 
+	through sharing with other users under tag names with comments regarding the articles shared.'''
+
+	return render(request, "about.html", {"about": about,})
 
 
 
