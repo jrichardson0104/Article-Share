@@ -1,6 +1,5 @@
 db.sqlite3
 *.pyc
-staticfiles
 twitterclone/settings/local.py
 .idea
 
