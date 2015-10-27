@@ -26,13 +26,21 @@
       <div class="list-group">
       <h4 class="list-group-item">Categories</h4>
         {% for category in categories %}
+<<<<<<< HEAD
         <a href="/category/view/{{ category }}" class="list-group-item">{{ category|upper }}</a>
+=======
+        <a href="/category/view/{{ category }}" class="list-group-item">{{ category }}</a>
+>>>>>>> 69c299e4da22fca281499a293237320536e9cfa0
         {% endfor %}
       </div>
         <div class="list-group">
         <h4 class="list-group-item">All Tags</h4>
       {% for tag in tags %}
+<<<<<<< HEAD
         <a href="{% url 'view_tag' tag %}" class="list-group-item">{{ tag|lower  }}</a>
+=======
+        <a href="{% url 'view_tag' tag %}" class="list-group-item">{{ tag }}</a>
+>>>>>>> 69c299e4da22fca281499a293237320536e9cfa0
         
       {% endfor %}
     </div>

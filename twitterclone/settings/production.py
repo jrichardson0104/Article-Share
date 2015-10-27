@@ -25,5 +25,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.dirname(os.path.join(BASE_DIR, 'static')),
 )
+<<<<<<< HEAD
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+=======
+>>>>>>> 69c299e4da22fca281499a293237320536e9cfa0

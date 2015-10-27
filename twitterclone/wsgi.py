@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "twitterclone.settings")
 
 application = get_wsgi_application()
@@ -21,3 +22,5 @@ try:
 	application = Cling(get_wsgi_application())
 except:
 	pass
+
+
