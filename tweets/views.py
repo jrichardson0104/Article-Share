@@ -12,9 +12,7 @@ categories = Category.objects.all()
 tags = shares.values_list('tag', flat=True)
 
 def home(request):
-	shares = Article.objects.all()
-	categories = Category.objects.all()
-	tags = shares.values_list('tag', flat=True)
+
 	context = {
 
 		"shares": shares,
