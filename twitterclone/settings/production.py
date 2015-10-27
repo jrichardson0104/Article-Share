@@ -1,10 +1,9 @@
-# from django.conf import settings
 
 import os
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-# DATABASES = settings.DATABASES
+
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -18,7 +17,7 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
