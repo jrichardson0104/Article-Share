@@ -25,7 +25,7 @@ SECRET_KEY = 'j@n4-5isd=vjdu2%+1$jzxf!w!x0r40)4qy!ug_#@b&w((dh!x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 EMAIL_HOST = 'smtp.mail.me.com'
 EMAIL_HOST_USER = 'jt21091@icloud.com'
